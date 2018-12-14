@@ -21,6 +21,10 @@ namespace Assessment8.Controllers
 
         public ActionResult Register()
         {
+            //registering a new account logs you out
+            var AuthenticationManager = HttpContext.GetOwinContext().Authentication;
+                AuthenticationManager.SignOut();
+
             return View();
         }
 
