@@ -53,11 +53,14 @@ namespace Assessment8.Controllers
                     ORM.Guests.Add(newGuest);
                     ORM.SaveChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.Register = "Thank you for siging up, " + registerModel.Email + "!";
+
+                    return View("LogIn");
 
                 }
 
                 ModelState.AddModelError("", IdentityResult.Errors.FirstOrDefault());
+
 
 
                 return View();
