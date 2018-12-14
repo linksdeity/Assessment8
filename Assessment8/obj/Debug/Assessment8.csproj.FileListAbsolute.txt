@@ -74,3 +74,6 @@ C:\Users\tbroughton\source\repos\Assessment8\Assessment8\obj\Debug\Assessment8.c
 C:\Users\tbroughton\source\repos\Assessment8\Assessment8\obj\Debug\Assessment8.dll
 C:\Users\tbroughton\source\repos\Assessment8\Assessment8\obj\Debug\Assessment8.pdb
 C:\Users\tbroughton\source\repos\Assessment8\Assessment8\obj\Debug\Assessment8.csprojAssemblyReference.cache
+C:\Users\tbroughton\source\repos\Assessment8\Assessment8\bin\App_Data\snowflake.gif
+C:\Users\tbroughton\source\repos\Assessment8\Assessment8\bin\App_Data\hot-chocolate-cute.png
+C:\Users\tbroughton\source\repos\Assessment8\Assessment8\bin\App_Data\snowman-clip-art-73.png

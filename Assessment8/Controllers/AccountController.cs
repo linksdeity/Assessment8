@@ -57,7 +57,7 @@ namespace Assessment8.Controllers
                     ORM.Guests.Add(newGuest);
                     ORM.SaveChanges();
 
-                    ViewBag.Register = "Thank you for siging up, " + registerModel.Email + "!";
+                    ViewBag.Register = "Thank you for signing up, " + registerModel.Email + "!";
 
                     return View("LogIn");
 
