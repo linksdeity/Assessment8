@@ -5,8 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="93bd2a687d724b74bb461e14e54a375a" Name="Diagram1">
-        <EntityTypeShape EntityType="TimPartyDbModel.Dish" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TimPartyDbModel.Guest" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TimPartyDbModel.Dish" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="TimPartyDbModel.Guest" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="TimPartyDbModel.FK_Dish_Guest" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

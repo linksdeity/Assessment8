@@ -19,18 +19,34 @@
         </EntityType>
         <EntityType Name="Guest">
           <Key>
-            <PropertyRef Name="GuestID" />
+            <PropertyRef Name="Email" />
           </Key>
           <Property Name="GuestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AttendanceDate" Type="datetime" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Guest" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Dish_Guest">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+          <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Dish">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TimPartyDbModelStoreContainer">
           <EntitySet Name="Dish" EntityType="Self.Dish" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Dish_Guest" Association="Self.FK_Dish_Guest">
+            <End Role="Guest" EntitySet="Guest" />
+            <End Role="Dish" EntitySet="Dish" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -39,6 +55,10 @@
         <EntityContainer Name="TimPartyDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Dishes" EntityType="TimPartyDbModel.Dish" />
           <EntitySet Name="Guests" EntityType="TimPartyDbModel.Guest" />
+          <AssociationSet Name="FK_Dish_Guest" Association="TimPartyDbModel.FK_Dish_Guest">
+            <End Role="Guest" EntitySet="Guests" />
+            <End Role="Dish" EntitySet="Dishes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dish">
           <Key>
@@ -51,6 +71,7 @@
           <Property Name="DishDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="FoodOption" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Guest" Relationship="TimPartyDbModel.FK_Dish_Guest" FromRole="Dish" ToRole="Guest" />
         </EntityType>
         <EntityType Name="Guest">
           <Key>
@@ -60,9 +81,22 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AttendanceDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Guest1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dishes" Relationship="TimPartyDbModel.FK_Dish_Guest" FromRole="Guest" ToRole="Dish" />
         </EntityType>
+        <Association Name="FK_Dish_Guest">
+          <End Type="TimPartyDbModel.Guest" Role="Guest" Multiplicity="1" />
+          <End Type="TimPartyDbModel.Dish" Role="Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Dish">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
